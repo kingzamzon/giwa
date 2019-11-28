@@ -11,40 +11,40 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    const SALE_ON = '1';
+    const SALE_OFF = '0';
+
     protected $fillable = [
-    	'user_id',
-    	'name',
+        'name',
     	'price',
     	'quantity',
-    	'sizes',
-    	'category_id',
-    	'collection_id',
-    	'brand_id',
+        'sizes',
+        'color',
+    	'onsale',
+    	'category',
+    	'collection',
+    	'brand',
     	'description'
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function productimage()
     {
         return $this->hasMany(ProductImage::class);
     }
 
-    public function brand()
-    {
-        return $this->belongsTo(Brand::class);
-    }
+    // public function brand()
+    // {
+    //     return $this->belongsTo(Brand::class);
+    // }
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
+    // public function category()
+    // {
+    //     return $this->belongsTo(Category::class);
+    // }
 
-    public function collection()
-    {
-        return $this->belongsTo(Collection::class);
-    }
+    // public function collection()
+    // {
+    //     return $this->belongsTo(Collection::class);
+    // }
 }

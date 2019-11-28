@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\ProductImage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -37,26 +38,47 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $rules = [
-        'user_id' => 'required|integer',
         'name' => 'required|min:3',
         'price' => 'required',
         'quantity' => 'required',
         'sizes' => 'required',
-        'category_id' => 'required|integer',
-        'collection_id' => 'required|integer',
-        'brand_id' => 'required|integer',
-        'description' => 'required'
+        'color' => 'required',
+        'onsale' => 'required',
+        'category' => 'required|max:12',
+        'collection' => 'required|max:6',
+        'brand' => 'required|max:20',
+        'description' => 'required',
       ];
 
       $this->validate($request, $rules);
 
       $data = $request->all();
 
+     
+      
       $product = Product::create($data);
+       if($request->has('images'))
+       {
+             $images = $request->images;
+             if($product){
+            for($i=0; $i < count($images); $i++){
+                self::storeImages($product->id, $images[$i]);
+            }
+          }
+       }
+      
+      
 
       return response()->json(['data'=>$product], 201);
     }
 
+    public function storeImages($property, $image)
+    {
+        $data['property_id'] = $property;
+        $data['cover_image'] = $image->store('');
+        $product = ProductImage::create($data);
+
+    }
     /**
      * Display the specified resource.
      *

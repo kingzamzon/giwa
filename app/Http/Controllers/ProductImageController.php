@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\ProductImage;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ProductImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+       $productimage = ProductImage::orderBy('created_at','desc')->with('product')->get();
+        return response()->json($productimage);
     }
 
     /**
@@ -36,32 +37,30 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $rules = [
-        'name' => 'required',
-        'email' => 'required|email|unique:users',
-        'password' => 'required|min:6'
+        'product_id' => 'required|integer',
+        'image' => 'required',
       ];
 
       $this->validate($request, $rules);
 
-      $data = $request->all();
-      $data['password'] = bcrypt($request->password);
+        $data = $request->all();
+        $data['image'] = $request->image->store('');
+       // for($i=0; $i < count($images); $i++){
+            
+       //  }
+     
+      $product = ProductImage::create($data);      
 
-      $user = User::create($data);
-
-      // retry(5, function() use ($user){
-      //       Mail::to($user)->send(new UserCreated($user));
-      //   }, 100);
-
-      return response()->json(['data'=>$user], 201);
+      return response()->json(['data'=>$product], 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\ProductImage  $productImage
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(ProductImage $productImage)
     {
         //
     }
@@ -69,10 +68,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\ProductImage  $productImage
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(ProductImage $productImage)
     {
         //
     }
@@ -81,10 +80,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  \App\ProductImage  $productImage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, ProductImage $productImage)
     {
         //
     }
@@ -92,10 +91,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  \App\ProductImage  $productImage
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(ProductImage $productImage)
     {
         //
     }
