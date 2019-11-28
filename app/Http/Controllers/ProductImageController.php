@@ -14,7 +14,7 @@ class ProductImageController extends Controller
      */
     public function index()
     {
-       $productimage = ProductImage::orderBy('created_at','desc')->with('product')->get();
+       $productimage = ProductImage::orderBy('created_at','asc')->get();
         return response()->json($productimage);
     }
 

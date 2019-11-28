@@ -12,6 +12,16 @@ class ProductImage extends Model
     	'image'
     ];
 
+    // public function setNameAttribute($name)
+    // {
+    //     $this->attributes['name'] = strtolower($name);
+    // }
+
+    public function getNameAttribute($image)
+    {
+        return ucwords($image);
+    }
+
     public function product()
 	{
 		return $this->belongsTo(Product::class);
