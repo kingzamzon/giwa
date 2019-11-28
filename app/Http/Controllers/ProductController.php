@@ -37,7 +37,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $rules = [
-        'user_id' => 'required',
+        'user_id' => 'required|integer',
         'name' => 'required|min:3',
         'price' => 'required',
         'quantity' => 'required',
@@ -51,11 +51,10 @@ class ProductController extends Controller
       $this->validate($request, $rules);
 
       $data = $request->all();
-      $data['approval'] = Property::UNAPPROVE_PROPERTY;
 
-      $property = Property::create($data);
+      $product = Product::create($data);
 
-      return response()->json(['data'=>$property], 201);
+      return response()->json(['data'=>$product], 201);
     }
 
     /**
@@ -66,7 +65,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+          $product = $product->with('productimage')->get();
+          return response()->json($product);
     }
 
     /**
@@ -77,7 +77,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+      
     }
 
     /**
@@ -89,7 +89,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->fill($request->intersect([
+            'name'
+        ]));
+        if($product->isClean())  {
+            return response()->json(['error' => 'You need to specified'], 422);
+        }
+        $product->save();
+
+        return response()->json($product);
     }
 
     /**
@@ -100,6 +108,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product = $product->delete();
+        return response()->json(['data'=> $product], 200);
     }
 }
