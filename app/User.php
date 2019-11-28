@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Product;
+use App\Brand;
+use App\Transaction;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,4 +39,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function product()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function product()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function brand()
+    {
+        return $this->hasMany(Brand::class);
+    }
 }
