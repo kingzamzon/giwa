@@ -14,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return response()->json('Balo how u');
+        $property = Product::orderBy('created_at','desc')->with('productimage')->get();
+        return response()->json($property);
     }
 
     /**
@@ -35,7 +36,26 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+        'user_id' => 'required',
+        'name' => 'required|min:3',
+        'price' => 'required',
+        'quantity' => 'required',
+        'sizes' => 'required',
+        'category_id' => 'required|integer',
+        'collection_id' => 'required|integer',
+        'brand_id' => 'required|integer',
+        'description' => 'required'
+      ];
+
+      $this->validate($request, $rules);
+
+      $data = $request->all();
+      $data['approval'] = Property::UNAPPROVE_PROPERTY;
+
+      $property = Property::create($data);
+
+      return response()->json(['data'=>$property], 201);
     }
 
     /**
