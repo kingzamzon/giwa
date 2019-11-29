@@ -446,20 +446,21 @@ Launch demo modal
 </div>
 </div>
 <script>
-    $(document).ready(function() {
-     $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        })
-        $.ajax({
-            url: "{{ url('api/products') }}",
-            method: "get",
-            success: function(data){
-               console.log(data);
-            }
-        })
-    })
+    // $(document).ready(function() {
+    //  $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    //     })
+    //     $.ajax({
+    //         url: "{{ url('api/products') }}",
+    //         method: "get",
+    //         success: function(data){
+    //            console.log(data);
+    //         }
+    //     })
+    // })
+
 </script>
 <script src="js/modalLogs.js"></script>
 <script>
@@ -498,4 +499,19 @@ function displayProduct(products){
                                         .currency
                                 }
                                 ${
-                                  
+                                    currencyConverter(product.price)
+                                        .figure
+                                }
+                            </span>
+                        </div>
+                    </div>
+                </div>
+        `
+    });
+
+    productsDiv.innerHTML = out;
+}
+displayProduct(prods)
+</script>
+<script src='js/products.js'></script>
+@endsection
