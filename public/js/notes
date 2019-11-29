@@ -1,0 +1,179 @@
+let products = [
+  {
+    name: 'Nike Slides',
+    img: 'images/footwears.jpg',
+    colors: ['red','blue','white'],
+    size: [48,32],
+    brand: 'vans',
+    collection: 'men',
+    category: 'footwears',
+    desc: 'Nice Sleeky pam slippers',
+    price: 3000,
+    qty: 5,
+    qty1: 1
+  },
+  {
+    name: 'Chinos Blahh',
+    img: 'images/trouser2.jpg',
+    colors: ['brown','black','blue','white'],
+    size: [48,32],
+    brand: 'kingsley-heath',
+    collection: 'men',
+    category: 'footwears',
+    desc: "Officially corporato'",
+    price: 4500,
+    qty: 5,
+    qty1: 1
+  },
+  {
+    name: "Cboat Lady's Shoe",
+    img: 'images/footwears.jpg',
+    colors: ['black','brown','white'],
+    size: [48,32,52],
+    brand: 'vans',
+    collection: 'women',
+    category: 'footwears',
+    desc: 'Nice Sleeky ladys footwear',
+    price: 7000,
+    qty: 5,
+    qty1: 1
+  },
+  {
+    name: 'Superkid Kid T-shirt',
+    img: 'images/Boys Image.jpg',
+    colors: ['red','blue','yellow'],
+    size: [16,18,14],
+    brand: 'hush-puppies',
+    collection: 'boys',
+    category: 'shirt',
+    desc: 'Elegantly looking',
+    price: 2000,
+    qty: 5,
+    qty1: 1
+  },
+  {
+    name: 'Hugmen Hoodies',
+    img: 'images/hoodies.jpg',
+    colors: ['red','blue','white', yellow],
+    size: [48,32],
+    brand: 'kingsley-heath',
+    collection: 'men',
+    category: 'hoodies',
+    desc: 'Cozy and fashionistic, uno',
+    price: 4800,
+    qty: 5,
+    qty1: 1
+  },
+  {
+    name: 'Crop Hoodies',
+    img: 'images/women.jpg',
+    colors: ['red','blue','white'],
+    size: [48,32],
+    brand: 'vans',
+    collection: 'women',
+    category: 'hoodies',
+    desc: 'fashionistic hoodie for ladies',
+    price: 5000,
+    qty: 5,
+    qty1: 1
+  },
+  {
+    name: 'Kid Sweats Suit',
+    img: 'images/children.jpg',
+    colors: ['red','blue','white'],
+    size: [48,32],
+    brand: 'wrangler',
+    collection: 'girls',
+    category: 'hoodies',
+    desc: 'ohhhh',
+    price: 2500,
+    qty: 5,
+    qty1: 1
+  }
+]
+
+<option>Choose an option</option>
+								<option>Size S</option>
+								<option>Size M</option>
+								<option>Size L</option>
+								<option>Size XL</option>
+
+  <option>Choose an option</option>
+								<option>Gray</option>
+								<option>Red</option>
+								<option>Black</option>
+								<option>Blue</option>
+
+
+
+<a href="index.html" class="s-text16">
+    Home
+    <i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
+  </a>
+
+  <a href="product.html" class="s-text16">
+    Women
+    <i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
+  </a>
+
+  <a href="#" class="s-text16">
+    T-Shirt
+    <i class="fa fa-angle-right m-l-8 m-r-9" aria-hidden="true"></i>
+  </a>
+
+  <span class="s-text17">
+    Boxy T-Shirt with Roll Sleeve Detail
+  </span>
+
+function addQty(e){
+  console.log('in??')
+  // if(e.target.classList.contains('addItem')){
+    console.log(e.target)
+    const qty = e.target.previousElementSibling;
+    console.log(qty.value);
+
+    // let s1 = sessionStorage.getItem('cart');
+    let itm;
+    console.log(product);
+    // if (s1){
+    //   s1 = JSON.parse(s1)
+    //   s1.find((c,i)=>{
+    //     if(c.name == product.name){
+    //       itm = s1.splice(i,1)[0];
+    //     }
+    //   })
+    // }else{
+    //   itm = product;
+    // }
+
+    if (parseInt(qty.value) + 1 <= product.qty){
+      qty.value = String(parseInt(qty.value) + 1)
+      // itm.qty1 = parseInt(qty.value);
+      console.log('done?')
+    }else{}
+    // console.log(itm, 'done');
+}
+
+<tr class="table-row">
+  <td class="column-1">
+    <div class="cart-img-product b-rad-4 o-f-hidden">
+      <img src="images/item-10.jpg" alt="IMG-PRODUCT">
+    </div>
+  </td>
+  <td class="column-2">Men Tshirt</td>
+  <td class="column-3">$36.00</td>
+  <td class="column-4">
+    <div class="flex-w bo5 of-hidden w-size17">
+      <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
+        <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+      </button>
+
+      <input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
+
+      <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
+        <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
+      </button>
+    </div>
+  </td>
+  <td class="column-5">$36.00</td>
+</tr>
