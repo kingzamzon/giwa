@@ -15,6 +15,9 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('order_id')->foreign();
+            $table->string('item');
+            $table->string('unit_price');
             $table->timestamps();
         });
     }
