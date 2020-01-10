@@ -14,6 +14,8 @@ class OrderDetails extends Model
 
     public function order()
 	{
-		return $this->belongsTo(Order::class);
-	}
+		return $this->belongsTo(Order::class)->withPivot('item');
+    }
+    
+    protected $hidden = ['order_id','id','created_at','updated_at'];
 }

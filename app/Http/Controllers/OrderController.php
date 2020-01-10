@@ -17,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::orderBy('created_at','desc')->with('customer')->with('orderdetails')->get();
+        $orders = Order::orderBy('created_at','desc')->get();
         return response()->json($orders);
     }
 
@@ -61,7 +61,7 @@ class OrderController extends Controller
             'item' => 'required'
 
           ];
-    
+        //   return dd($request->item);
           $this->validate($request, $rules);
     
           $data = $request->all();
@@ -71,14 +71,8 @@ class OrderController extends Controller
               $data['customer_id'] =  $customer->id;       
               $order = Order::create($data);          
           }
-          if($order) {
-            for($i=0; $i < count($request->item); $i++){
-             self::storeItems($order->id, $request->item[$i]);
-            }
-             
-          }
     
-          return response()->json(['data'=>$order,'customer'=>$customer], 201);
+          return response()->json(['data'=>$order], 201);
     }
 
     public function storeItems($id, $item)
@@ -95,9 +89,10 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($reference)
     {
-        //
+        $order = Order::where('reference',$reference)->with('customer')->get();
+        return response()->json($order);
     }
 
     /**

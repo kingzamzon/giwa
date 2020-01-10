@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->integer('customer_id')->foreign();
             $table->string('coupon_code')->nullable();
             $table->string('delivery_fee');
+            $table->text('item');
             $table->string('reference');
             $table->string('total_cost');
             $table->string('is_paid');

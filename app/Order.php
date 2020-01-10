@@ -12,6 +12,7 @@ class Order extends Model
         'customer_id',
         'coupon_code',
         'delivery_fee',
+        'item',
         'reference',
         'total_cost',
         'is_paid',
@@ -27,4 +28,7 @@ class Order extends Model
 	{
 		return $this->hasMany(OrderDetails::class);
     }
+    protected $casts = [
+        'item' => 'array',
+    ];
 }

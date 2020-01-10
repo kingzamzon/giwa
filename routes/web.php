@@ -15,3 +15,6 @@ Route::get('/', 'PagesController@index');
 Route::get('/products', 'PagesController@products');
 Route::get('/contact', 'PagesController@contact');
 Route::get('/about', 'PagesController@about');
+Route::get('/t', function() {
+  return dd(csrf_token());
+});
