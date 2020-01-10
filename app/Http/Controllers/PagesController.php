@@ -8,7 +8,7 @@ class PagesController extends Controller
 {
     public function index()
     {
-        return 'hello SUcker';
+        return 'API waiting for response';
     }
     public function products()
     {

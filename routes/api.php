@@ -22,3 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('products','ProductController');
 Route::resource('products.images','ProductImageController');
+Route::resource('order','OrderController');

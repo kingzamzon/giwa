@@ -16,15 +16,16 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('country');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('lagoa_region');
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->string('lagRegion');
             $table->text('address');
             $table->string('state');
-            $table->string('postal');
+            $table->string('zipcode')->nullable();
             $table->string('email');
             $table->string('phone');
-            $table->text('order_note');
+            $table->text('orderNote')->nullable();
+            $table->string('alternateAddress');
             $table->timestamps();
         });
     }

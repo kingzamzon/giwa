@@ -17,7 +17,6 @@ class CreateOrderDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('order_id')->foreign();
             $table->string('item');
-            $table->string('unit_price');
             $table->timestamps();
         });
     }
